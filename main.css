@@ -1,0 +1,53 @@
+body {
+    text-align: center;
+}
+
+.header {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #ff2dd2;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 65px;
+    cursor: pointer;
+}
+
+table tr:first-child td {
+    border-top: 0;
+}
+
+table tr:last-child td {
+    border-bottom: 0;
+}
+
+table td:first-child {
+    border-left: 0;
+}
+
+table td:last-child {
+    border-right: 0;
+}
+
+.endgame {
+    display: none;
+    width: 200px;
+    height: 100px;
+    top: 280px;
+    background-color: rgba(255, 0, 0, 0.7);
+    position: absolute;
+    left: 50%;
+    margin-left: -100px;
+}
+
+.button-container {
+    margin-top: 2em;
+}
