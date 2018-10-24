@@ -34,3 +34,14 @@ function startGame() {
     }
 }
 
+function turnClick(box) {
+    // start players turn on click
+    turn(box.target.id, hPlayer)
+}
+
+function turn(boxId, player) {
+    // change board value
+    ogBoard[boxId] = player;
+    // update the display
+    document.getElementById(boxId).innerText = player
+}
