@@ -14,7 +14,7 @@ const winPatterns = [
     [2, 5, 8],
     [0, 4, 8],
     [6, 4, 2]
-]
+];
 
 const boxes = document.querySelectorAll('.box')
 
@@ -43,5 +43,28 @@ function turn(boxId, player) {
     // change board value
     ogBoard[boxId] = player;
     // update the display
-    document.getElementById(boxId).innerText = player
+    document.getElementById(boxId).innerText = player;
+    // check if player has just won 
+    let gameWon = checkWin(ogBoard, player);
+    // call the game over function if the game has been won [if null then no]
+    if (gameWon) gameOver(gameWon)
+}
+
+// passing through board rather than ref of og var for minimax
+function checkWin(board, player) {
+    // find all the boxes that player has taken
+    let plays = board.reduce((a, e, i) => (e === player)) ? a.concat(i) : a, []);
+    let gameWon = null;
+    // check if the game is won by iterating through the winpatterns 
+    // .entries returns the item and index
+    for (let [index, win] of winPatterns.entries()) {
+        // for every element in each win pattern, we check that there is a corresponding index 
+        if (win.every(elem => plays.indexOf(elem > -1)) {
+            gameWon = {index: index, player: player};
+            break;
+            })
+    }
+    // will be null or index&player
+    return gameWon;
+}
 }
