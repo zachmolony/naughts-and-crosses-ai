@@ -53,18 +53,32 @@ function turn(boxId, player) {
 // passing through board rather than ref of og var for minimax
 function checkWin(board, player) {
     // find all the boxes that player has taken
-    let plays = board.reduce((a, e, i) => (e === player)) ? a.concat(i) : a, []);
+    let plays = board.reduce((a, e, i) => (e === player) ? a.concat(i) : a, []);
     let gameWon = null;
     // check if the game is won by iterating through the winpatterns 
     // .entries returns the item and index
     for (let [index, win] of winPatterns.entries()) {
         // for every element in each win pattern, we check that there is a corresponding index 
-        if (win.every(elem => plays.indexOf(elem > -1)) {
+        if (win.every(elem => plays.indexOf(elem) > -1)) {
             gameWon = {index: index, player: player};
             break;
-            })
+            }
     }
     // will be null or index&player
     return gameWon;
 }
-}
+    
+    
+function gameOver (gameWon) {
+    // go through every  index of the winning pattern
+    for (let index of winPatterns[gameWon.index]) {
+        // get the element and change the background colour
+        document.getElementById(index).style.backgroundColor =
+            // green for human player, red for ai
+            gameWon.player == hPlayer ? "green" : "red";
+        // stop clickability
+        for (i=0; i<boxes.length; i++) {
+            boxes[i].removeEventListener('click', turnClick, false)
+        }
+    }
+ }
