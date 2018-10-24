@@ -18,3 +18,19 @@ const winPatterns = [
 
 const boxes = document.querySelectorAll('.box')
 
+startGame();
+
+function startGame() {
+    // hiding the endgame message at start of game
+    document.querySelector('.endgame').style.display = "none";
+    // init array 0-9
+    ogBoard = Array.from(Array(9).keys());
+    // empty boxes
+    for (i=0; i<boxes.length; i++) {
+        boxes[i].innerText = '';
+        boxes[i].style.removeProperty('background-color');
+        // what to do when box is clicked
+        boxes[i].addEventListener('click', turnClick, false)
+    }
+}
+
