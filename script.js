@@ -89,4 +89,15 @@ function gameOver(gameWon) {
             boxes[i].removeEventListener('click', turnClick, false)
         }
     }
- }
+}
+
+function emptySpaces() {
+    // filter board to get squares that do not have a token
+    return ogBoard.filter(s => typeof s == 'number')
+}
+
+function bestSpot() {
+    // get the first open square for now
+    return emptySpaces()[0];
+}
+
