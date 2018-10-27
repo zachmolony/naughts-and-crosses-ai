@@ -26,7 +26,7 @@ function startGame() {
     // init array 0-9
     ogBoard = Array.from(Array(9).keys());
     // empty boxes
-    for (i=0; i<boxes.length; i++) {
+    for (i = 0; i < boxes.length; i++) {
         boxes[i].innerText = '';
         boxes[i].style.removeProperty('background-color');
         // what to do when box is clicked
@@ -35,8 +35,13 @@ function startGame() {
 }
 
 function turnClick(box) {
-    // start players turn on click
-    turn(box.target.id, hPlayer)
+    // check that the box has not already been used
+    if (typeof ogBoard[box.target.id] == 'number') {
+        // start players turn on click
+        turn(box.target.id, hPlayer)
+        // cpu player turn
+        if (!checkTie()) turn(bestSpot(), cPlayer);
+    }
 }
 
 function turn(boxId, player) {
@@ -60,16 +65,19 @@ function checkWin(board, player) {
     for (let [index, win] of winPatterns.entries()) {
         // for every element in each win pattern, we check that there is a corresponding index 
         if (win.every(elem => plays.indexOf(elem) > -1)) {
-            gameWon = {index: index, player: player};
+            gameWon = {
+                index: index,
+                player: player
+            };
             break;
-            }
+        }
     }
     // will be null or index&player
     return gameWon;
 }
-    
-    
-function gameOver (gameWon) {
+
+
+function gameOver(gameWon) {
     // go through every  index of the winning pattern
     for (let index of winPatterns[gameWon.index]) {
         // get the element and change the background colour
@@ -77,7 +85,7 @@ function gameOver (gameWon) {
             // green for human player, red for ai
             gameWon.player == hPlayer ? "green" : "red";
         // stop clickability
-        for (i=0; i<boxes.length; i++) {
+        for (i = 0; i < boxes.length; i++) {
             boxes[i].removeEventListener('click', turnClick, false)
         }
     }
