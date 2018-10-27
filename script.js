@@ -101,3 +101,14 @@ function bestSpot() {
     return emptySpaces()[0];
 }
 
+function checkTie() {
+    if (emptySpaces().length === 0) {
+        for (i=1; i<boxes; i++) {
+            cells[i].style.backgroundColor = "green";
+            cells[i].removeEventListener('click', turnClick, false);
+        }
+        declareWinner("The game is a tie.");
+        return true;
+    }
+    return false;
+}
