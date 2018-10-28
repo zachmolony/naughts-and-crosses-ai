@@ -91,6 +91,11 @@ function gameOver(gameWon) {
     }
 }
 
+function declareWinner(winner) {
+    document.querySelector(".endgame").style.display = "block";
+    document.querySelector(".endgame .text").innerText = winner;
+}
+
 function emptySpaces() {
     // filter board to get squares that do not have a token
     return ogBoard.filter(s => typeof s == 'number')
