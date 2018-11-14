@@ -1,4 +1,4 @@
-// define vars
+ // define vars
 
 var ogBoard;
 
@@ -76,7 +76,6 @@ function checkWin(board, player) {
     return gameWon;
 }
 
-
 function gameOver(gameWon) {
     // go through every  index of the winning pattern
     for (let index of winPatterns[gameWon.index]) {
@@ -107,7 +106,7 @@ function bestSpot() {
 }
 
 function checkTie() {
-    if (emptySpaces().length === 0) {
+    if (emptySpaces().length === 0)  {
         for (i=1; i<boxes; i++) {
             cells[i].style.backgroundColor = "green";
             cells[i].removeEventListener('click', turnClick, false);
@@ -115,5 +114,5 @@ function checkTie() {
         declareWinner("The game is a tie.");
         return true;
     }
-    return false;
+    return null;
 }
