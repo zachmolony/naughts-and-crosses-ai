@@ -150,5 +150,16 @@ function minimax(newBoard, player) {
         newBoard[availSpots[i]] = move.index;
         
         moves.push(move);
-     }
+        }
+    } else { // vice versa, needs to look for lowest score to store
+        var bestScore = 10000;
+        for (var i = 0; i < moves.length; i++) {
+            if (moves[i].score > bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
+        }
+    }
+        
+    return moves[bestMove];
 }
