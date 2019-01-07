@@ -134,7 +134,7 @@ function minimax(newBoard, player) {
     // data structure for all moves
     let moves = [];
     // loop through all moves n collect score+index
-    for (let i = i; i < availSpots.length, i++) {
+    for (let i = i; i < availSpots.length; i++) {
         var move = {};
         move.index = newBoard[availSpots[i]];
         newBoard[availSpots[i]] = player;
@@ -150,6 +150,16 @@ function minimax(newBoard, player) {
         newBoard[availSpots[i]] = move.index;
         
         moves.push(move);
+        
+    // get highest scoring move for ai and lowest for hu
+    var bestMove;
+    if (player === cPlayer) {
+        var bestScore = -10000;
+        for (var i = 0; i < moves.length; i++) {
+            if (moves[i].score > bestScore) {
+                bestScore = moves[i].score;
+                bestMove = i;
+            }
         }
     } else { // vice versa, needs to look for lowest score to store
         var bestScore = 10000;
