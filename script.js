@@ -129,11 +129,26 @@ function minimax(newBoard, player) {
         return {score: 0}
     }
     
+    // RECURSIVE BIT
+    
     // data structure for all moves
     let moves = [];
     // loop through all moves n collect score+index
     for (let i = i; i < availSpots.length, i++) {
         var move = {};
         move.index = newBoard[availSpots[i]];
+        newBoard[availSpots[i]] = player;
+        
+        if (player == cPlayer) {
+            var result = minimax(newBoard, huPlayer);
+            move.score = result.score;
+        } else {
+            var result = minimax(newBoard, huPlayer);
+            move.score = result.score;
+        }
+        
+        newBoard[availSpots[i]] = move.index;
+        
+        moves.push(move);
      }
 }
