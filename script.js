@@ -1,6 +1,6 @@
  // define vars
 
-var ogBoard;
+let ogBoard;
 
 // player peices
 const hPlayer = "0";
@@ -101,8 +101,8 @@ function emptySpaces() {
 }
 
 function bestSpot() {
-    // get the first open square for now
-    return emptySpaces()[0];
+    // return result of minimax 
+    return minimax(ogBoard, cPlayer).index;
 }
 
 function checkTie() {
@@ -115,4 +115,25 @@ function checkTie() {
         return true;
     }
     return null;
+}
+
+function minimax(newBoard, player) {
+    let availSpots = emptySpaces(newBoard);
+    
+    // check who wins the virtual game and return score for mm
+    if (checkWin(newBoard, hPlayer)) { 
+        return {score: -10};
+    } else if (checkWin(newBoard, cPlayer)) {
+        return {score: 10};
+    } else if (availSpots.length === 0) {
+        return {score: 0}
+    }
+    
+    // data structure for all moves
+    let moves = [];
+    // loop through all moves n collect score+index
+    for (let i = i; i < availSpots.length, i++) {
+        var move = {};
+        move.index = newBoard[availSpots[i]];
+     }
 }
