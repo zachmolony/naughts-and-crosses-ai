@@ -118,9 +118,10 @@
  }
 
  function minimax(newBoard, player) {
+     //  make a list of all the empty spots
      let availSpots = emptySpaces(newBoard);
 
-     // check who wins the virtual game and return score for mm
+     // check for a winner and assign score to this recusion branch
      if (checkWin(newBoard, hPlayer)) {
          return {
              score: -10
@@ -143,8 +144,11 @@
      for (let i = 0; i < availSpots.length; i++) {
          var move = {};
          move.index = newBoard[availSpots[i]];
+         
+         // put the current player in the first spot
          newBoard[availSpots[i]] = player;
 
+         // then recall the function and wait for a value
          if (player == cPlayer) {
              var result = minimax(newBoard, hPlayer);
              move.score = result.score;
@@ -155,6 +159,7 @@
 
          newBoard[availSpots[i]] = move.index;
 
+         // push all the moves to the moves array
          moves.push(move);
      }
 
